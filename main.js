@@ -1,89 +1,55 @@
-// expand tab width when certain number is reached
-
-// add a level of tabs when number is reached.
-
-// async function tabTester() {
-
-// const tabs = await chrome.tabs.query({
-//     url: [
-//       "https://developer.chrome.com/docs/webstore/*",
-//       "https://developer.chrome.com/docs/extensions/*",
-//     ],
-//   });
-
-//   console.log(tabs);
-// };
-
-// tabTester();
-
-// chrome.tabs.query({}, function(tabs) {
-//     // tabs contains an array of all open tabs
-//     console.log(tabs);
-//   });
-
-// add event lister that listens for button clicks
-const button = document.querySelector("#happen");
+// add event listener that listens for button clicks
+const button = document.querySelector("#button-display");
 button.addEventListener("click", tabCounter);
 
-const tabCount = document.querySelector(".number");
-const tabDiv = document.querySelector(".numbers");
-// add functionality that when button is clicked, it logs the number of tabs that are open.
-// logs the number of tabs that are open
+const tabCount = document.querySelector(".tab-count");
+const tabDiv = document.querySelector(".tab-container");
 
+// When button is clicked, it logs the number of tabs that are open.
 function tabCounter() {
+  // Get an array of all the tabs open
   chrome.tabs.query({}, (tabs) => {
-    console.log(tabs);
-    let map = tabs.map((item) => [
-      item.title,
-      item.favIconUrl,
-      item.id,
-      item.windowId,
-    ]);
+    // Create new array of tabs with only the information we want
+    let map = tabs.map((item) => [item.title, item.favIconUrl]);
+    // iterate over array of tabs and create buttons for each
     map.forEach((tab) => {
-      let flexWrapper = document.createElement("div");
-      flexWrapper.setAttribute("class", "flex");
+      // Create container to hold favicon and title information
+      let flexContainer = document.createElement("div");
+      flexContainer.setAttribute("class", "flex");
 
+      // Create favicon element
       let favicon = tab[1]
         ? document.createElement("img")
         : document.createElement("div");
       favicon.setAttribute("class", "favicon");
-      let imageSource = tab[1] ? tab[1] : null;
+      let imageSource = tab[1] || "whatever";
       if (imageSource) favicon.setAttribute("src", imageSource);
 
+      // Create button element
       let button = document.createElement("div");
       button.setAttribute("class", "button");
-      button.classList.add(`${tab[2]}`);
-      button.classList.add(`${tab[3]}`);
-
+      // Create button text
       let buttonText = document.createElement("p");
       buttonText.setAttribute("class", "button-text");
       buttonText.innerText = tab[0];
 
-      flexWrapper.appendChild(favicon);
-      flexWrapper.appendChild(buttonText);
+      // Append favicon and buttonText to container
+      flexContainer.appendChild(favicon);
+      flexContainer.appendChild(buttonText);
+      // Append container to button
+      button.appendChild(flexContainer);
+      // Append button to our popup window
       tabDiv.appendChild(button);
-      button.appendChild(flexWrapper);
     });
-    console.log(map);
     tabCount.innerText = `You have ${tabs.length} tabs open!`;
+    // Create event Listener for all buttons
+    let allButtons = document.querySelectorAll(".button");
+    for (let i = 0; i < tabs.length; i++) {
+      allButtons[i].addEventListener("click", () => {
+        // Navigate to selected tab and page
+        chrome.tabs.update(tabs[i].id, { active: true });
+        chrome.windows.update(tabs[i].windowId, { focused: true });
+      });
+    }
   });
 }
-
-let hmm = document.querySelectorAll(".button");
-console.log(hmm);
-let buttons = document.getElementsByClassName("button");
-let length = buttons.length;
-console.log(buttons.length);
-for (let i = 0; i < length; i++) {
-  buttons[i].addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log(e);
-    chrome.tabs.update(tabs[0].id, { active: true });
-    chrome.windows.update(tabs[0].windowId, { focused: true });
-  });
-}
-// chrome.tabGroups.update( tabs[0].id, {width: 2400})
-
-// let number = document.createElement("p");
-// number.innerText = `Number of tabs open: ${tabs.length}`
-// document.appendChild(number);

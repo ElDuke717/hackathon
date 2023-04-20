@@ -57,7 +57,7 @@ background-position: center; */
   margin: 0.5rem;
 }
 
-#happen {
+#button-display {
   color: black;
   background-color: yellow;
   padding: 0.5rem 1rem;
@@ -89,12 +89,12 @@ background-position: center; */
   margin-left: 0.25rem;
 }
 
-.numbers {
+.tab-container {
   display: flex;
   flex-direction: column;
   height: fit-content;
 }
 
-.number {
+.tab-count {
   text-align: center;
 }
