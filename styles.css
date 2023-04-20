@@ -1,5 +1,100 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 350px;
+  border-radius: 10px;
+  background: linear-gradient(blue, cyan);
+  /* background-image: linear-gradient(
+125deg,
+hsl(240deg 100% 20%) 0%,
+hsl(289deg 100% 21%) 11%,
+hsl(315deg 100% 27%) 22%,
+hsl(329deg 100% 36%) 33%,
+hsl(337deg 100% 43%) 44%,
+hsl(357deg 91% 59%) 56%,
+hsl(17deg 100% 59%) 67%,
+hsl(34deg 100% 53%) 78%,
+hsl(45deg 100% 50%) 89%,
+hsl(55deg 100% 50%) 100%
+);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center; */
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  color: floralwhite;
+  font-size: 25px;
+  border: 2px solid grey;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: cyan;
+  text-align: center;
+  background-image: linear-gradient(
+    125deg,
+    hsl(240deg 100% 20%) 0%,
+    hsl(289deg 100% 21%) 11%,
+    hsl(315deg 100% 27%) 22%,
+    hsl(329deg 100% 36%) 33%,
+    hsl(337deg 100% 43%) 44%,
+    hsl(357deg 91% 59%) 56%,
+    hsl(17deg 100% 59%) 67%,
+    hsl(34deg 100% 53%) 78%,
+    hsl(45deg 100% 50%) 89%,
+    hsl(55deg 100% 50%) 100%
+  );
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.inst {
+  color: white;
+  font-size: 15px;
+  margin: 0.5rem;
+}
+
+#happen {
+  color: black;
+  background-color: yellow;
+  padding: 0.5rem 1rem;
+  border: 2px solid black;
+  border-radius: 16px;
+}
+
+.button {
+  border: 2px solid white;
+  padding: 0 1rem;
+  cursor: pointer;
+  margin-bottom: 3px;
+}
+
+.button-text {
+  color: white;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.favicon {
+  height: 20px;
+  width: 20px;
+  margin-right: 1rem;
+  margin-left: 0.25rem;
+}
+
 .numbers {
   display: flex;
   flex-direction: column;
-  height: 1000px;
+  height: fit-content;
+}
+
+.number {
+  text-align: center;
 }

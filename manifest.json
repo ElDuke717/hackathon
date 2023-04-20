@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Waterfall",
+  "version": "0.1",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "description": "A tool to help you see all those tabs you have open.",
+  "host_permissions": ["https://developer.chrome.com/*"],
+  "permissions": ["tabs"]
+}
